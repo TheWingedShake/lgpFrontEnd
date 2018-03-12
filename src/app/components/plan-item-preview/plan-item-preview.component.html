@@ -1,0 +1,8 @@
+<div class="card">
+    <div class="card-header">{{name}}</div>
+    <div class="card-block">
+        <p class="card-text">From: {{destinationFrom}}. To: {{destinationTo}}</p>
+        <p class="card-text">Date start: {{dateStart}}</p>
+        <a [routerLink]="['/plans/view', id]" class="btn btn-info">View</a>
+    </div>
+</div>

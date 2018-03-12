@@ -1,0 +1,9 @@
+<div class="container">
+    <app-form-filter (applyfilter)="applyFilters($event)"></app-form-filter>
+</div>
+<div class="form-opener">
+    <a class="btn btn-success" [routerLink]="['/plans/create']">Create new order</a>
+</div>
+<div *ngFor="let item of planList">
+    <app-plan-item-preview [id]="item._id" [destinationFrom]="item.destinationFrom" [destinationTo]="item.destinationTo" [dateStart]="item.dateStart" [name]="item.name"></app-plan-item-preview>
+</div>
