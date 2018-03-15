@@ -12,18 +12,26 @@
           </div>
           <div class="form-group" [ngClass]="{'has-danger': myForm.controls['destinationFrom'].touched && !myForm.controls['destinationFrom'].valid}">
             <label for="destinationFrom">From</label>
-            <input id="destinationFrom" name="destinationFrom" type="text" class="form-control" placeholder="From" [formControl]="myForm.controls['destinationFrom']" />
+            <select id="destinationFrom" name="destinationFrom" class="form-control" [formControl]="myForm.controls['destinationFrom']">
+              <option *ngFor="let city of cities" value="{{city._id}}">{{city.name}}</option>
+            </select>
             <div class="form-control-feedback" *ngIf="myForm.controls['destinationFrom'].touched && !myForm.controls['destinationFrom'].valid">Destination from can not be empty.</div>
           </div>
           <div class="form-group" [ngClass]="{'has-danger': myForm.controls['destinationTo'].touched && !myForm.controls['destinationTo'].valid}">
             <label for="destinationTo">Destination</label>
-            <input id="destinationTo" name="destinationTo" type="text" class="form-control" placeholder="Destionation" [formControl]="myForm.controls['destinationTo']" />
+            <select id="destinationTo" name="destinationTo" class="form-control" placeholder="Destionation" [formControl]="myForm.controls['destinationTo']">
+              <option *ngFor="let city of cities" value="{{city._id}}">{{city.name}}</option>
+            </select>
             <div class="form-control-feedback" *ngIf="myForm.controls['destinationTo'].touched && !myForm.controls['destinationTo'].valid">Destination can not be empty.</div>
           </div>
           <div class="form-group" [ngClass]="{'has-danger': myForm.controls['dateStart'].touched && !myForm.controls['dateStart'].valid}">
             <label for="dateStart">Date</label>
             <input id="dateStart" name="dateStart" type="text" class="form-control" placeholder="Date" [formControl]="myForm.controls['dateStart']" />
             <div class="form-control-feedback" *ngIf="myForm.controls['dateStart'].touched && !myForm.controls['dateStart'].valid">Date start can not be empty.</div>
+          </div>
+          <div class="form-group">
+            <label for="orderDescription"></label>
+            <textarea id="orderDescription" name="orderDescription" class="form-control" rows="5" [formControl]="myForm.controls['description']"></textarea>
           </div>
           <input type="hidden" [formControl]="myForm.controls['id']" />
           <button class="btn btn-primary" type="submit">Save</button>

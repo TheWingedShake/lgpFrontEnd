@@ -16,7 +16,7 @@ export class OrderService {
 
   }
 
-  getOrders(obj?: any): Observable<PlanItem[]> {
+  getOrders(obj?: any): Observable<OrderModel[]> {
     let paramsString = '';
     if (obj && obj.city) {
       paramsString += `city=${obj.city}`;
@@ -24,9 +24,10 @@ export class OrderService {
     const params = new HttpParams({
       fromString: paramsString
     });
-    console.log(params);
-    return this.http.get<PlanItem[]>(this.apiUrl + this.ordersUrl, {params: params, withCredentials: true})
-    .pipe();
+    return this.http.get<OrderModel[]>(this.apiUrl + this.ordersUrl, {params: params, withCredentials: true})
+    .pipe(
+      map(data => data.map( item => new OrderModel(item)))
+    );
   }
 
   getOrder(id: string): Observable<OrderModel> {
@@ -35,12 +36,24 @@ export class OrderService {
   }
 
   createOrder( item: OrderModel ) {
-    const body = {name: item.name, dateStart: item.dateStart, destinationFrom: item.destinationFrom, destinationTo: item.destinationTo};
+    const body = {
+      name: item.name,
+      dateStart: item.dateStart,
+      destinationFrom: item.destinationFrom.getId(),
+      destinationTo: item.destinationTo.getId(),
+      description: item.description
+    };
     return this.http.post(this.apiUrl + this.ordersUrl, body, {withCredentials: true});
   }
 
   updateOrder( item: OrderModel ) {
-    const body = {name: item.name, dateStart: item.dateStart, destinationFrom: item.destinationFrom, destinationTo: item.destinationTo};
+    const body = {
+      name: item.name,
+      dateStart: item.dateStart,
+      destinationFrom: item.destinationFrom.getId(),
+      destinationTo: item.destinationTo.getId(),
+      description: item.description
+    };
     return this.http.put(this.apiUrl + this.ordersUrl + '/' + item._id, body, {withCredentials: true});
   }
 

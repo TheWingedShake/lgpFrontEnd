@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlanItemPreview } from '../../planItemPreview';
 import { OrderService } from '../../services/order-service/order.service';
 import { PlanItem } from './plan.model';
+import { OrderModel } from '../order/order.model';
 
 @Component({
   selector: 'app-plan-item-preview-list',
@@ -11,7 +12,7 @@ import { PlanItem } from './plan.model';
 })
 export class PlanItemPreviewListComponent implements OnInit {
 
-  planList: PlanItemPreview[];
+  planList: OrderModel[];
 
   constructor(private orderService: OrderService) {
   }
@@ -26,7 +27,10 @@ export class PlanItemPreviewListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orderService.getOrders().subscribe(data => this.planList = data);
+    this.orderService.getOrders().subscribe(data => {
+      console.log(data);
+      this.planList = data;
+    });
   }
 
 }

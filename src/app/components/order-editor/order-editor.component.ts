@@ -29,8 +29,9 @@ export class OrderEditorComponent implements OnInit {
     const item = new OrderModel({
       name: event.orderName,
       dateStart: event.dateStart,
-      destinationFrom: event.destinationFrom,
-      destinationTo: event.destinationTo,
+      destinationFrom: {_id: event.destinationFrom},
+      destinationTo: {_id: event.destinationTo},
+      description: event.description,
       _id: event.id || null
     });
     if (item._id) {
@@ -58,8 +59,11 @@ export class OrderEditorComponent implements OnInit {
     this.orderService.createOrder(item)
     .subscribe(
       data => {
-        console.log(data);
-        //  this.router.navigate(['/plans/view', data['data']['_id']]);
+        if (data['error']) {
+          console.log(data['error']);
+        }else {
+          this.router.navigate(['/plans/view', data['_id']]);
+        }
       },
       error => console.log(error)
     );

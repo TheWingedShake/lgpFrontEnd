@@ -9,4 +9,13 @@ export class CityModel {
         this.name = obj && obj.name || null;
         this.postcode = obj && obj.postcode || null;
     }
+
+    getName(): string {
+        return this.name;
+    }
+
+    getId(): string {
+        return this._id;
+    }
+
 }
