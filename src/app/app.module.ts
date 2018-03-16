@@ -25,10 +25,13 @@ import { AUTH_PROVIDERS } from './services/auth-service/auth.service';
 import { LoggedInGuard } from './logged-in.guard';
 import { PlansComponent } from './components/plans/plans.component';
 import { routes as childRoutes, PlansModule } from './components/plans/plans.module';
+import { routes as userRoutes, UserModule } from './components/user-page/user.module';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserComponent } from './components/user/user.component';
 import { CityComponent } from './components/city/city.component';
 import { CityService } from './services/city-service/city.service';
+import { NgDatepickerModule } from 'ng2-datepicker';
+import { UserPageComponent } from './components/user-page/user-page.component';
 
 
 const routes: Routes = [
@@ -38,6 +41,7 @@ const routes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'contactus', redirectTo: 'contact'},
   {path: 'plans', component: PlansComponent, children: childRoutes},
+  {path: 'user', component: UserPageComponent, children: userRoutes},
   {path: 'signup', component: SignupComponent}
 ];
 
@@ -59,14 +63,16 @@ const routes: Routes = [
     PlansComponent,
     SignupComponent,
     UserComponent,
-    CityComponent
+    CityComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    NgDatepickerModule
   ],
   providers: [
     OrderService,

@@ -18,6 +18,6 @@
     </div>
 </div>
 <div class="well" *ngIf="authService.getUser()">
-    Logged in as <b>{{ authService.getUser().getFullName() }}</b>
+    Logged in as <a [routerLink]="['user/view', authService.getUser().id]"><b>{{ authService.getUser().getFullName() }}</b></a>
     <a href (click)="logout()">Log out</a>
 </div>

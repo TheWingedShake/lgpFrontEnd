@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../../services/user-service/user.service';
+import { UserModel } from './user.model';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+  user: UserModel;
+
+  constructor(private route: ActivatedRoute, private userService: UserService, private location: Location) {
+    route.params.subscribe(params => { this.id = params['id']; });
+  }
 
   ngOnInit() {
+    this.userService.getUserById(this.id)
+    .subscribe(
+      data => this.user = new UserModel(data),
+      error => console.log(error)
+    );
+  }
+
+  back(): void {
+    this.location.back();
   }
 
 }

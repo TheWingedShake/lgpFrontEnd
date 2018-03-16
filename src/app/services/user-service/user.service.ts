@@ -20,6 +20,11 @@ export class UserService {
     return this.user;
   }
 
+  getUserById(id): any {
+    return this.http.get(this.apiUrl + this.usersUrl + '/view/' + id)
+    .pipe();
+  }
+
   signUpUser(data: any) {
     return this.http.post(this.apiUrl + this.usersUrl + '/signup', data);
   }
