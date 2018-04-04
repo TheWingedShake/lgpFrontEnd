@@ -1,4 +1,5 @@
 import { CityModel } from '../city/city.model';
+import { UserModel } from '../user/user.model';
 
 export class OrderModel {
 
@@ -8,6 +9,8 @@ export class OrderModel {
     destinationTo: CityModel;
     dateStart: string;
     description: string;
+    user: UserModel;
+    isCompleted: boolean;
 
     constructor(obj?: any) {
         this._id = obj && obj._id || null;
@@ -16,6 +19,12 @@ export class OrderModel {
         this.destinationTo = new CityModel(obj && obj.destinationTo || null);
         this.dateStart = obj && obj.dateStart || null;
         this.description = obj && obj.description || null;
+        this.user = new UserModel(obj && obj.user || null);
+        this.isCompleted = obj && obj.isCompleted;
+    }
+
+    getName(): string {
+        return this.name || '';
     }
 
 }

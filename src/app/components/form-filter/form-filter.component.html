@@ -10,8 +10,16 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="city">City: </label>
-          <select id="city" name="city" class="form-control" [formControl]="myForm.controls['city']">
+          <label for="cityFrom">From(city): </label>
+          <select id="cityFrom" name="cityFrom" class="form-control" [formControl]="myForm.controls['cityFrom']">
+            <option value=""></option>
+            <option *ngFor="let city of cities" value="{{city._id}}">{{city.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cityTo">To(city): </label>
+          <select id="cityTo" name="cityTo" class="form-control" [formControl]="myForm.controls['cityTo']">
+            <option value=""></option>
             <option *ngFor="let city of cities" value="{{city._id}}">{{city.name}}</option>
           </select>
         </div>

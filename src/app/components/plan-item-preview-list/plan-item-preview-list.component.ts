@@ -18,9 +18,12 @@ export class PlanItemPreviewListComponent implements OnInit {
   }
 
   applyFilters(event) {
-    const params = {city: ''};
-    if (event.city) {
-      params.city = event.city;
+    const params = {cityTo: '', cityFrom: ''};
+    if (event.cityTo) {
+      params.cityTo = event.cityTo;
+    }
+    if (event.cityFrom) {
+      params.cityFrom = event.cityFrom;
     }
     console.log('Applied filters', params);
     this.orderService.getOrders(params).subscribe(data => this.planList = data);

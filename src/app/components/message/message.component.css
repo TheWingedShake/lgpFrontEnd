@@ -1,0 +1,22 @@
+.message-content{
+    border-radius: 8px;
+    padding: 8px 12px;
+    background-color: #e1e9ee;
+    overflow: hidden;
+    display: inline-block;
+    clear: both;
+    max-width: 75%;
+}
+.message-item{
+    box-sizing: border-box;
+    position: relative;
+    clear: both;
+    margin-bottom: 4px;
+    width: 100%;
+}
+.message-item.outcome-message .message-content{
+    float: right;
+}
+.message-item.income-message .message-content{
+    float: left;
+}

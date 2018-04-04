@@ -1,6 +1,7 @@
 <div *ngIf="user">
   <div>
     <a class="btn btn-primary" role="button" (click)="back()">Back</a>
+    <a *ngIf="isEditable()" class="btn btn-primary" role="button" [routerLink]="['/user/edit', this.id]" >Edit</a>
   </div>
   <div class="user-details">
     <h3>{{user.getFullName()}}</h3>

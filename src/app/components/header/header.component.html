@@ -12,6 +12,9 @@
     <li class="nav-item">
         <a class="nav-link" [routerLink]="['/about']">About</a>
     </li>
+    <li *ngIf="authService.isLoggedIn()" class="nav-item">
+        <a class="nav-link" [routerLink]="['/threads']"><span>Messages</span>&nbsp;<span *ngIf="recentMessagesCount > 0" class="recent-message-count badge badge-pill badge-warning">{{recentMessagesCount}}</span></a>
+    </li>
   </ul>
   <div class="collapse navbar-collapse"><app-login></app-login></div>
 </nav>

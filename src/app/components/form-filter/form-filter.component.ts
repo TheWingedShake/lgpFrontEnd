@@ -21,9 +21,10 @@ export class FormFilterComponent implements OnInit {
     const fb = new FormBuilder();
     this.myForm = fb.group({
       orderType: [''],
-      city: ['']
+      cityFrom: [''],
+      cityTo: ['']
     });
-    this.cityService.getCities().subscribe(
+    this.cityService.cities.subscribe(
       data => this.cities = data,
       error => console.log(error)
     );

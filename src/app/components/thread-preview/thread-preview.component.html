@@ -1,0 +1,4 @@
+<li [routerLink]="['/threads/view', thread.id]" class="list-group-item justify-content-between thread-item">
+  {{thread.order.getName()}}
+  <span class="badge badge-default badge-pill">{{recentMessages}}</span>
+</li>

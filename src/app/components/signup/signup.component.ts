@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, Validator, FormControl } from '@ang
 import { UserModel } from '../user/user.model';
 import { UserService } from '../../services/user-service/user.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,12 @@ export class SignupComponent implements OnInit {
 
   userModel: UserModel;
 
-  constructor(private fb: FormBuilder, private userService: UserService, private location: Location) { }
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private location: Location,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.userForm = this.fb.group({
@@ -47,7 +53,7 @@ export class SignupComponent implements OnInit {
     };
     this.userService.signUpUser(body).subscribe(
       data => {
-        console.log(data);
+        this.router.navigate(['/home']);
       },
       error => console.log(error)
     );

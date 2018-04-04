@@ -1,0 +1,20 @@
+<div *ngIf="thread">
+  <div>
+    <a class="btn btn-primary" role="button" (click)="back()">Back</a>
+  </div>
+  <div class="thread-head-container">
+    <h3>{{thread.order.name}}</h3>
+    <h4>User: {{person.firstName}} {{person.lastName}}</h4>
+  </div>
+  <div class="messages-container">
+    <app-message *ngFor="let message of thread.messages" [message]="message"></app-message>
+  </div>
+  <div class="msg-form" *ngIf="messageForm">
+    <form [formGroup]="messageForm" (ngSubmit)="sendMessage(messageForm.value)">
+      <textarea [formControl]="messageForm.controls['content']"></textarea>
+      <div class="buttons-row">
+        <button [disabled]="!messageForm.valid" class="btn btn-sm btn-primary" role="button" type="submit">Send</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -7,12 +7,14 @@ import { CityModel } from '../../components/city/city.model';
 export class CityService {
 
   private citiesUrl = '/cities';
-  private cities: CityModel[];
+  cities: Observable<CityModel[]>;
 
-  constructor( private http: HttpClient, @Inject('API_URL') private apiUrl: string ) { }
+  constructor( private http: HttpClient, @Inject('API_URL') private apiUrl: string ) { 
+    this.cities = this.getCities();
+  }
 
   getCities(): Observable<CityModel[]> {
-    return this.http.get<CityModel[]>(this.apiUrl + this.citiesUrl)
+    return this.http.get<CityModel[]>(`${this.apiUrl}${this.citiesUrl}`)
     .pipe();
   }
 

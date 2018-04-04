@@ -26,12 +26,21 @@ import { LoggedInGuard } from './logged-in.guard';
 import { PlansComponent } from './components/plans/plans.component';
 import { routes as childRoutes, PlansModule } from './components/plans/plans.module';
 import { routes as userRoutes, UserModule } from './components/user-page/user.module';
+import { routes as threadRoutes, ThreadModule } from './components/thread-page/thread.module';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserComponent } from './components/user/user.component';
 import { CityComponent } from './components/city/city.component';
 import { CityService } from './services/city-service/city.service';
 import { NgDatepickerModule } from 'ng2-datepicker';
 import { UserPageComponent } from './components/user-page/user-page.component';
+import { UserEditorComponent } from './components/user-editor/user-editor.component';
+import { ThreadPageComponent } from './components/thread-page/thread-page.component';
+import { ThreadsComponent } from './components/threads/threads.component';
+import { MessageService } from './services/message-service/message.service';
+import { ThreadService } from './services/thread-service/thread.service';
+import { ThreadPreviewComponent } from './components/thread-preview/thread-preview.component';
+import { ThreadComponent } from './components/thread/thread.component';
+import { MessageComponent } from './components/message/message.component';
 
 
 const routes: Routes = [
@@ -42,6 +51,7 @@ const routes: Routes = [
   {path: 'contactus', redirectTo: 'contact'},
   {path: 'plans', component: PlansComponent, children: childRoutes},
   {path: 'user', component: UserPageComponent, children: userRoutes},
+  {path: 'threads', component: ThreadPageComponent, children: threadRoutes},
   {path: 'signup', component: SignupComponent}
 ];
 
@@ -64,7 +74,13 @@ const routes: Routes = [
     SignupComponent,
     UserComponent,
     CityComponent,
-    UserPageComponent
+    UserPageComponent,
+    UserEditorComponent,
+    ThreadPageComponent,
+    ThreadsComponent,
+    ThreadPreviewComponent,
+    ThreadComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +106,9 @@ const routes: Routes = [
     UserService,
     AuthService,
     AUTH_PROVIDERS,
-    LoggedInGuard
+    LoggedInGuard,
+    MessageService,
+    ThreadService
   ],
   bootstrap: [AppComponent]
 })

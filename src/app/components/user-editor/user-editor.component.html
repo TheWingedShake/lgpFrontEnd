@@ -1,0 +1,20 @@
+<div *ngIf="userForm" class="user-form">
+  <div class="card">
+    <div class="card-block">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+        <div class="form-group" [ngClass]="{'has-danger': userForm.controls['firstName'].touched && !userForm.controls['firstName'].valid}">
+          <label for="firstName">First name</label>
+          <input id="firstName" name="firstName" class="form-control" type="text" placeholder="first name" [formControl]="userForm.controls['firstName']" />
+          <div class="form-control-feedback" *ngIf="userForm.controls['firstName'].touched && !userForm.controls['firstName'].valid">First name can not be blank.</div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-danger': userForm.controls['lastName'].touched && !userForm.controls['lastName'].valid}">
+          <label for="lastName">Last name</label>
+          <input id="lastName" name="lastName" class="form-control" type="text" placeholder="last name" [formControl]="userForm.controls['lastName']" />
+          <div class="form-control-feedback" *ngIf="userForm.controls['lastName'].touched && !userForm.controls['lastName'].valid">Last name can not be blank.</div>
+        </div>
+        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary" (click)="back()" type="button">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

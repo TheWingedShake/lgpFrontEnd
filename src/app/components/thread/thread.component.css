@@ -1,0 +1,27 @@
+.messages-container{
+    width: 492px;
+    height: 500px;
+    border: 1px solid #cdcfd2;
+    margin-top: 30px;
+    margin: 0 auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.msg-form{
+    margin: 0 auto;
+    width: 492px;
+    height: 100px;
+    position: relative;
+}
+.msg-form textarea{
+    padding: 12px 12px 0;
+    width: 492px;
+    height: 100px;
+}
+.buttons-row{
+    text-align: right;
+}
+.thread-head-container{
+    margin: 0 auto;
+    width: 492px;
+}
