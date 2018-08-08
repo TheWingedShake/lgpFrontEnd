@@ -4,6 +4,7 @@ import { OrderModel } from '../order/order.model';
 import { OrderService } from '../../services/order-service/order.service';
 import { CityModel } from '../city/city.model';
 import { CityService } from '../../services/city-service/city.service';
+import { DISABLED } from '@angular/forms/src/model';
 
 @Component({
   selector: 'app-order-form',
@@ -23,6 +24,8 @@ export class OrderFormComponent implements OnInit {
   order: OrderModel;
 
   cities: CityModel[] = [];
+
+  minDate = new Date();
 
   constructor(private fb: FormBuilder, private orderService: OrderService, private cityService: CityService) {}
 

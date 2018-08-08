@@ -42,6 +42,8 @@ import { ThreadPreviewComponent } from './components/thread-preview/thread-previ
 import { ThreadComponent } from './components/thread/thread.component';
 import { MessageComponent } from './components/message/message.component';
 
+import { MatPaginatorModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -88,7 +90,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    NgDatepickerModule
+    NgDatepickerModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule
   ],
   providers: [
     OrderService,

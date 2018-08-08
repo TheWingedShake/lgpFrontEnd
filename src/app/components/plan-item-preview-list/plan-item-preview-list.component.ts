@@ -13,27 +13,46 @@ import { OrderModel } from '../order/order.model';
 export class PlanItemPreviewListComponent implements OnInit {
 
   planList: OrderModel[];
+  totalCount: Number = 0;
+  filters: any = {
+    cityTo: '',
+    cityFrom: '',
+    orderType: '',
+    offset: 0
+  };
 
   constructor(private orderService: OrderService) {
   }
 
   applyFilters(event) {
-    const params = {cityTo: '', cityFrom: ''};
-    if (event.cityTo) {
-      params.cityTo = event.cityTo;
-    }
-    if (event.cityFrom) {
-      params.cityFrom = event.cityFrom;
-    }
-    console.log('Applied filters', params);
-    this.orderService.getOrders(params).subscribe(data => this.planList = data);
+    this.filters.cityTo = event.cityTo || '';
+    this.filters.cityFrom = event.cityFrom || '';
+    this.filters.offset = 0;
+    console.log('Applied filters', this.filters);
+    this.refreshOrders();
   }
 
   ngOnInit() {
-    this.orderService.getOrders().subscribe(data => {
-      console.log(data);
-      this.planList = data;
+    this.refreshOrders();
+  }
+
+  fetchResult(result) {
+    if (!result) {
+      return;
+    }
+    this.planList = result.map( item => new OrderModel(item));
+  }
+
+  refreshOrders() {
+    this.orderService.getOrders(this.filters).subscribe(data => {
+      this.fetchResult(data.result);
+      this.totalCount = data.count;
     });
+  }
+
+  pagerAction(event) {
+    this.filters.offset = event.pageIndex * event.pageSize;
+    this.refreshOrders();
   }
 
 }

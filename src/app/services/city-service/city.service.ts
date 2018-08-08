@@ -9,7 +9,7 @@ export class CityService {
   private citiesUrl = '/cities';
   cities: Observable<CityModel[]>;
 
-  constructor( private http: HttpClient, @Inject('API_URL') private apiUrl: string ) { 
+  constructor( private http: HttpClient, @Inject('API_URL') private apiUrl: string ) {
     this.cities = this.getCities();
   }
 

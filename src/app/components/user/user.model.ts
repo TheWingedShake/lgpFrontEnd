@@ -1,4 +1,6 @@
-export class UserModel {
+import { BaseModel } from '../../base.model';
+
+export class UserModel extends BaseModel{
 
     firstName: string;
     lastName: string;
@@ -8,6 +10,7 @@ export class UserModel {
     id: string;
 
     constructor(obj?) {
+        super();
         this.id = obj && (obj.id || obj._id) || null;
         this.firstName = obj && obj.firstName || null;
         this.lastName = obj && obj.lastName || null;
@@ -17,21 +20,6 @@ export class UserModel {
 
     getFullName(): string {
         return (this.firstName ? this.firstName : '') + ' ' + (this.lastName ? this.lastName : '');
-    }
-
-    getDateEntered(): string {
-        if (!this.dateEntered) {
-            return '';
-        }
-        // tslint:disable-next-line:max-line-length
-        return `${this.pad(this.dateEntered.getDate())}:${this.pad(this.dateEntered.getMonth() + 1)}:${this.dateEntered.getFullYear()}`;
-    }
-
-    private pad(number) {
-        if (number < 10) {
-            return '0' + number;
-        }
-        return number;
     }
 
 }

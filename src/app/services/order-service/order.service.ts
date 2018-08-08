@@ -16,7 +16,7 @@ export class OrderService {
 
   }
 
-  getOrders(obj?: any): Observable<OrderModel[]> {
+  getOrders(obj?: any): Observable<any> {
     const paramsString = [];
     if (obj && obj.cityTo) {
       paramsString.push(`cityTo=${obj.cityTo}`);
@@ -24,13 +24,13 @@ export class OrderService {
     if (obj && obj.cityFrom) {
       paramsString.push(`cityFrom=${obj.cityFrom}`);
     }
+    if (obj && obj.offset) {
+      paramsString.push(`offset=${obj.offset}`);
+    }
     const params = new HttpParams({
       fromString: paramsString.join('&')
     });
-    return this.http.get<OrderModel[]>(`${this.apiUrl}${this.ordersUrl}`, {params: params, withCredentials: true})
-    .pipe(
-      map(data => data.map( item => new OrderModel(item)))
-    );
+    return this.http.get<any>(`${this.apiUrl}${this.ordersUrl}`, {params: params, withCredentials: true});
   }
 
   getOrder(id: string): Observable<OrderModel> {

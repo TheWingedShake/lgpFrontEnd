@@ -5,7 +5,7 @@
   </div>
   <div class="user-details">
     <h3>{{user.getFullName()}}</h3>
-    <h4>Sign up date: {{user.getDateEntered()}}</h4>
+    <h4>Sign up date: {{user.getDateFormatted(user.dateEntered)}}</h4>
     <h4>Description:</h4>
     <div>
       User description;

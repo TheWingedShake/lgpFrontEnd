@@ -4,6 +4,13 @@
 <div class="form-opener">
     <a class="btn btn-success" [routerLink]="['/plans/create']">Create new order</a>
 </div>
+<div class="mat-app-background">
+    <mat-paginator [length]="totalCount"
+    [pageSize]="10"
+    (page)="pagerAction($event)">
+</mat-paginator>
+</div>
+
 <div *ngFor="let item of planList">
-    <app-plan-item-preview [id]="item._id" [destinationFrom]="item.destinationFrom.getName()" [destinationTo]="item.destinationTo.getName()" [dateStart]="item.dateStart" [name]="item.name"></app-plan-item-preview>
+    <app-plan-item-preview [id]="item._id" [destinationFrom]="item.destinationFrom.getName()" [destinationTo]="item.destinationTo.getName()" [dateStart]="item.getDateFormatted(item.dateStart)" [name]="item.name"></app-plan-item-preview>
 </div>

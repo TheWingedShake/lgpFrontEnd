@@ -4,7 +4,7 @@
   </div>
   <div class="thread-head-container">
     <h3>{{thread.order.name}}</h3>
-    <h4>User: {{person.firstName}} {{person.lastName}}</h4>
+    <h4>User: <a [routerLink]="['/user/view', person.id]">{{person.firstName}} {{person.lastName}}</a></h4>
   </div>
   <div class="messages-container">
     <app-message *ngFor="let message of thread.messages" [message]="message"></app-message>

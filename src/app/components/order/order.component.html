@@ -28,7 +28,7 @@
     <h3>{{order.name}}</h3>
     <h4>From: {{order.destinationFrom.getName()}}</h4>
     <h4>To: {{order.destinationTo.getName()}}</h4>
-    <h4>Date: {{order.dateStart}}</h4>
+    <h4>Date: {{order.getDateFormatted(order.dateStart)}}</h4>
     <h4>Owner: <a [routerLink]="['/user/view', order.user.id]">{{order.user.getFullName()}}</a></h4>
     <h4>Description:</h4>
     <div>

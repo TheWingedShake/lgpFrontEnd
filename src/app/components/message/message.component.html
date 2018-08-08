@@ -1,5 +1,8 @@
 <div class="message-item" [ngClass]="{'income-message': authService.getUser().id != message.user.id, 'outcome-message': authService.getUser().id == message.user.id}">
   <div class="message-content">
       {{message.content}}
+      <div class="message-date">
+        {{message.getDateFormatted(message.dateSend)}}
+      </div>
   </div>
 </div>
