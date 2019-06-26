@@ -13,9 +13,8 @@ export class CityService {
     this.cities = this.getCities();
   }
 
-  getCities(): Observable<CityModel[]> {
-    return this.http.get<CityModel[]>(`${this.apiUrl}${this.citiesUrl}`)
-    .pipe();
+  getCities() {
+    return this.http.get<CityModel[]>(`${this.apiUrl}${this.citiesUrl}`);
   }
 
 }

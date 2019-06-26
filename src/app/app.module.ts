@@ -41,9 +41,11 @@ import { ThreadService } from './services/thread-service/thread.service';
 import { ThreadPreviewComponent } from './components/thread-preview/thread-preview.component';
 import { ThreadComponent } from './components/thread/thread.component';
 import { MessageComponent } from './components/message/message.component';
+import { ApiService } from './services/api/api.service';
 
 import { MatPaginatorModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { CityStoreService } from './services/city-service/city-store.service';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -114,7 +116,9 @@ const routes: Routes = [
     AUTH_PROVIDERS,
     LoggedInGuard,
     MessageService,
-    ThreadService
+    ThreadService,
+    ApiService,
+    CityStoreService
   ],
   bootstrap: [AppComponent]
 })

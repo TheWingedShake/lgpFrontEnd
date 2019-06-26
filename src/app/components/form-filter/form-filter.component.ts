@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { CityService } from '../../services/city-service/city.service';
 import { CityModel } from '../city/city.model';
+import { CityStoreService } from '../../services/city-service/city-store.service';
 
 @Component({
   selector: 'app-form-filter',
@@ -15,7 +16,7 @@ export class FormFilterComponent implements OnInit {
   cities: CityModel[] = [];
 
   myForm: FormGroup;
-  constructor(private cityService: CityService) { }
+  constructor(private cityService: CityService, private cityStore: CityStoreService) { }
 
   ngOnInit() {
     const fb = new FormBuilder();
@@ -24,9 +25,8 @@ export class FormFilterComponent implements OnInit {
       cityFrom: [''],
       cityTo: ['']
     });
-    this.cityService.cities.subscribe(
-      data => this.cities = data,
-      error => console.log(error)
+    this.cityStore.getCities().subscribe(
+      data => this.cities = data
     );
   }
 

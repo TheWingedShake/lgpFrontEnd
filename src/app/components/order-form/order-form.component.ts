@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { OrderModel } from '../order/order.model';
 import { OrderService } from '../../services/order-service/order.service';
 import { CityModel } from '../city/city.model';
-import { CityService } from '../../services/city-service/city.service';
 import { DISABLED } from '@angular/forms/src/model';
+import { CityStoreService } from '../../services/city-service/city-store.service';
 
 @Component({
   selector: 'app-order-form',
@@ -27,7 +27,7 @@ export class OrderFormComponent implements OnInit {
 
   minDate = new Date();
 
-  constructor(private fb: FormBuilder, private orderService: OrderService, private cityService: CityService) {}
+  constructor(private fb: FormBuilder, private orderService: OrderService, private cityStoreService: CityStoreService) {}
 
   ngOnInit() {
     if (this.id) {
@@ -39,7 +39,7 @@ export class OrderFormComponent implements OnInit {
       this.order = new OrderModel();
       this.instantiateForm();
     }
-    this.cityService.getCities().subscribe(
+    this.cityStoreService.getCities().subscribe(
       data => this.cities = data,
       error => console.log(error)
     );
